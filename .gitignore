@@ -3,7 +3,9 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+/src/test/resources/http-client.private.env.json
 /xmls/*
+
 ### STS ###
 .apt_generated
 .classpath

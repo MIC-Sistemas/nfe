@@ -14,7 +14,14 @@
 					"script": {
 						"exec": [
 							"var jsonData = pm.response.json();\r",
-							"pm.environment.set(\"access_token\", jsonData.access_token);"
+							"pm.environment.set(\"access_token\", jsonData.access_token);\r",
+							"\r",
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Access Token\", function () {\r",
+							"    pm.response.to.have.jsonBody(\"access_token\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -26,12 +33,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "abc123",
+							"value": "{{password}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "user-mic",
+							"value": "{{username}}",
 							"type": "string"
 						}
 					]
@@ -63,6 +70,22 @@
 		},
 		{
 			"name": "XML Upload",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"No Body\", function () {\r",
+							"    pm.response.to.not.be.withBody;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "noauth"
